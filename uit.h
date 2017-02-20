@@ -2,22 +2,32 @@
 #define UIT_H
 
 #define MESSAGE_SIZE 1024
+#define BUFFER_SIZE  1472
 
 extern char program_name[];
 extern char in_daemon_mode;
 
-void daemonize ();
-void terminate ();
-void tcpserver ();
-char *message (char* format, ...);
+void  daemonize ();
+void  terminate ();
+void  tcpserver (int port);
+int   tcpsocket (int port);
+int   udprelay  ();
+char *message   (char* format, ...);
+
+#define MSG(LEVEL, TAG, FORMAT, ARGS...) do {                   \
+    if (in_daemon_mode)                                         \
+      syslog (LEVEL, FORMAT, ##ARGS);                           \
+    else                                                        \
+      fprintf (stderr, TAG ": " FORMAT "\n", ##ARGS);           \
+  } while (0)
+
+#define INFO(FORMAT, ARGS...) MSG(LOG_INFO,    "INFO", FORMAT, ##ARGS)
+#define WARN(FORMAT, ARGS...) MSG(LOG_WARNING, "WARN", FORMAT, ##ARGS)
 
 #define FAIL(FORMAT, ARGS...) do {                              \
     int e = errno;                                              \
     char *m = message (FORMAT ": %s", ##ARGS, strerror(e));     \
-    if (in_daemon_mode)                                         \
-      syslog (LOG_ERR, "%s", m);                                \
-    else                                                        \
-      fprintf (stderr, "%s\n", m);                              \
+    MSG(LOG_ERR, "ERROR", "%s", m);                             \
     terminate ();                                               \
     exit (1);                                                   \
   } while (0)

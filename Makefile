@@ -7,4 +7,4 @@ all: $(EXE)
 clean:
 	rm -f *.o $(EXE)
 
-uitsd: uitsd.o daemonize.o terminate.o tcpserver.o message.o
+uitsd: uitsd.o daemonize.o terminate.o tcpserver.o message.o tcpsocket.o udprelay.o

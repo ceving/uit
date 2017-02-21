@@ -35,7 +35,7 @@ void tcpserver (int port)
         {
           INFO ("Handling new connection");
           close (s);
-          udprelay ();
+          relay ();
           INFO ("Finishing connection");
         }
       else                                              // Server handling

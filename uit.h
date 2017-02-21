@@ -9,9 +9,12 @@ extern char in_daemon_mode;
 
 void  daemonize ();
 void  terminate ();
+void  tcpclient ();
 void  tcpserver (int port);
 int   tcpsocket (int port);
-int   udprelay  ();
+void  udpserver (int port);
+int   udpsocket (int port);
+int   relay  ();
 char *message   (char* format, ...);
 
 #define MSG(LEVEL, TAG, FORMAT, ARGS...) do {                   \

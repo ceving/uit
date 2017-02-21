@@ -3,6 +3,7 @@ LICENSE
 Makefile
 README.md
 VERSION
+uit.h
 uitcd.c
 tcpclient.c
 udpserver.c

@@ -1,0 +1,17 @@
+FILES
+LICENSE
+Makefile
+README.md
+VERSION
+uitcd.c
+tcpclient.c
+udpserver.c
+uitsd.c
+tcpserver.c
+udpclient.c
+message.c
+daemonize.c
+terminate.c
+tcpsocket.c
+udpsocket.c
+relay.c

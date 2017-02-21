@@ -1,4 +1,6 @@
 *~
 *.o
+.#*
+*.tar.gz
 uitcd
 uitsd

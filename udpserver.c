@@ -12,34 +12,4 @@
 
 int udpserver ()
 {
-  int u;                     // UDP socket file descriptor
-  struct sockaddr_in a;      // Address struct
-  int l = sizeof a;          // Size of the address
-  int p = DEFAULT_MIN_PORT;  // Port number
-
-  u = socket (AF_INET, SOCK_DGRAM, 0);
-
-  if (u < 0)
-    FAIL ("Can not create UDP socket");
-
-  while (p <= DEFAULT_MAX_PORT)                 // Find a free port to bind
-    {
-      a.sin_family = AF_INET;
-      a.sin_addr.s_addr = htonl(INADDR_ANY);
-      a.sin_port = htons(p);
-
-      e = bind (u, (struct sockaddr *) &a, sizeof a);
-
-      switch (e) {
-      0: break;
-      EADDRINUSE:
-        INFO ("Port %d already in use", p);
-        p++;
-        continue;
-      default:
-        FAIL ("Can not bind socket");
-      }
-    }
-
-  return u;
 }

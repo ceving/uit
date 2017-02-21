@@ -1,8 +1,11 @@
 #ifndef UIT_H
 #define UIT_H
 
-#define MESSAGE_SIZE 1024
-#define BUFFER_SIZE  1472
+#define MESSAGE_SIZE     (1024)
+#define BUFFER_SIZE      (1472)
+
+#define DEFAULT_MIN_PORT (12300)
+#define DEFAULT_MAX_PORT (49151)
 
 extern char program_name[];
 extern char in_daemon_mode;
@@ -12,8 +15,7 @@ void  terminate ();
 void  tcpclient ();
 void  tcpserver (int port);
 int   tcpsocket (int port);
-void  udpserver (int port);
-int   udpsocket (int port);
+int   udpsocket ();
 int   relay  ();
 char *message   (char* format, ...);
 
